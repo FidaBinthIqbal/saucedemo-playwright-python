@@ -38,3 +38,12 @@ jobs:
         with:
           name: playwright-test-report
           path: report.html
+      
+      - name: Upload Playwright failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-failure-artifacts
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7
